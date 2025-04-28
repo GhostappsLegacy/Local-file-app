@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title></title>
+    <style>
+        /* --- Basic Setup & Variables --- */
+        :root {
+            --ios-blue: #007AFF;
+            --bg-color: #000000;
+            --text-color: #FFFFFF;
+            --text-color-secondary: rgba(255, 255, 255, 0.6);
+            --separator-color: rgba(255, 255, 255, 0.2);
+            --navbar-scrolled-bg: rgba(20, 20, 20, 0.6);
+            --highlight-bg: rgba(255, 255, 255, 0.1);
+            --base-font-size: 17px;
+            --nav-bar-base-height: 44px;
+            --row-height: 44px;
+            --icon-size: 60px;
+            --side-padding: 16px;
+            --list-separator-height: 1px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-size: var(--base-font-size);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* --- Navigation Bar --- */
+        #navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: calc(var(--nav-bar-base-height) + env(safe-area-inset-top));
+            padding-top: env(safe-area-inset-top);
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.1s ease, backdrop-filter 0.1s ease;
+        }
+
+        #navbar h1 {
+            margin: 0;
+            font-size: var(--base-font-size);
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        /* Scrolled state */
+  #navbar.scrolled {
+    background-color: #1c1c1e; /* <-- your desired color */
+    backdrop-filter: none; /* <-- optional: removes the blur */
+    -webkit-backdrop-filter: none;
+}
+
+        /* --- Main Content Area --- */
+        #main-content {
+            padding-top: calc(var(--nav-bar-base-height) + env(safe-area-inset-top));
+            padding-left: var(--side-padding);
+            padding-right: var(--side-padding);
+            padding-bottom: calc(var(--side-padding) + env(safe-area-inset-bottom));
+        }
+
+        .content-wrapper {
+            padding-top: 20px;
+        }
+
+        /* --- Header Card --- */
+        .header-card {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header-card .icon {
+            width: var(--icon-size);
+            height: var(--icon-size);
+            background-color: var(--text-color);
+            border-radius: 15px;
+            margin: 0 auto 12px auto;
+        }
+
+        .header-card h2 {
+            font-size: 22px;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+        }
+
+        .header-card p {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-color);
+            margin: 0 0 10px 0;
+        }
+
+        .header-card .learn-more {
+            color: var(--ios-blue);
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .header-card .learn-more:hover,
+        .header-card .learn-more:focus {
+            text-decoration: underline;
+        }
+
+        /* --- Settings List --- */
+        .settings-list {
+            background-color: #1c1c1e;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .settings-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--row-height);
+            padding-left: var(--side-padding);
+            padding-right: var(--side-padding);
+            font-size: var(--base-font-size);
+            color: var(--text-color);
+            text-decoration: none;
+            position: relative;
+        }
+
+        .settings-row::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: var(--side-padding);
+            right: 0;
+            height: var(--list-separator-height);
+            background-color: var(--separator-color);
+        }
+
+        .settings-list .settings-row:last-child::before {
+            display: none;
+        }
+
+        .settings-row .value {
+            color: var(--text-color-secondary);
+            font-weight: 400;
+        }
+
+        .settings-row .chevron {
+            color: var(--text-color-secondary);
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .settings-row.link {
+            cursor: pointer;
+            transition: background-color 0.15s ease-in-out;
+        }
+
+        .settings-row.link:hover {
+            background-color: var(--highlight-bg);
+        }
+
+        .settings-row.link:active {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        @media (min-width: 600px) {
+            .content-wrapper {
+                max-width: 375px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header id="navbar">
+    <h1>Web Inspector</h1>
+</header>
+
+<main id="main-content">
+    <div class="content-wrapper">
+        <section class="header-card">
+            <div class="icon"></div>
+            <h2>Web Inspector</h2>
+            <p>Web development tool for iOS and iPadOS.</p>
+            <a href="#" class="learn-more">Learn more...</a>
+        </section>
+
+        <section class="settings-list">
+            <a href="#" class="settings-row link">
+                <span>Setup Instructions</span>
+                <span class="chevron">&rsaquo;</span>
+            </a>
+            <div class="settings-row">
+                <span>Version</span>
+                <span class="value">1.2.7</span>
+            </div>
+            <div class="settings-row">
+                <span>System</span>
+                <span class="value">iOS 17.3.1</span>
+            </div>
+            <a href="https://andadinosaur.com" target="_blank" class="settings-row link">
+                <span>andadinosaur.com</span>
+                <span class="chevron">&rsaquo;</span>
+            </a>
+            <a href="#" class="settings-row link">
+                <span>Acknowledgements</span>
+                <span class="chevron">&rsaquo;</span>
+            </a>
+        </section>
+    </div>
+</main>
+
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const navbar = document.getElementById('navbar');
+        const scrollThreshold = 0;
+
+        const handleScroll = () => {
+            const currentScroll = window.scrollY || document.documentElement.scrollTop;
+            if (currentScroll > scrollThreshold) {
+                if (!navbar.classList.contains('scrolled')) {
+                    navbar.classList.add('scrolled');
+                }
+            } else {
+                if (navbar.classList.contains('scrolled')) {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+    });
+</script>
+
+</body>
+</html>
