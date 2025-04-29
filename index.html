@@ -28,7 +28,8 @@
       --row-height: 44px;
       --icon-size: 60px;
       --side-padding: 16px;
-      --list-separator-height: 1px;
+      --list-separator-height: 0.5px; /* updated */
+      --border-color: #303033;        /* new */
     }
 
     body {
@@ -56,6 +57,7 @@
       justify-content: center;
       align-items: center;
       transition: background-color 0.05s ease, backdrop-filter 0.05s ease;
+      border-bottom: 0.5px solid var(--border-color); /* new bottom border */
     }
 
     #navbar h1 {
@@ -65,11 +67,11 @@
       color: var(--text-color);
     }
 
-    /* Scrolled state */#navbar.scrolled {
-  background-color: rgba(28, 28, 30, 0.6); /* translucent */
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
+    #navbar.scrolled {
+      background-color: rgba(28, 28, 30, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
 
     /* --- Main Content Area --- */
     #main-content {
@@ -158,8 +160,8 @@
       bottom: 0;
       left: var(--side-padding);
       right: 0;
-      height: var(--list-separator-height);
-      background-color: var(--separator-color);
+      height: var(--list-separator-height); /* 0.5px */
+      background-color: var(--border-color); /* updated color */
     }
 
     .settings-list .settings-row:last-child::before {
@@ -172,7 +174,7 @@
     }
 
     .settings-row .chevron {
-      color: var(--text-color-secondary);
+      color: var(--border-color); /* updated to match border */
       font-size: 20px;
       font-weight: 500;
     }
@@ -252,7 +254,7 @@
       const navbar = document.getElementById('navbar');
       const handleScroll = () => {
         const currentScroll = window.scrollY || document.documentElement.scrollTop;
-        if (currentScroll > 2) { // Almost immediate
+        if (currentScroll > 2) {
           navbar.classList.add('scrolled');
         } else {
           navbar.classList.remove('scrolled');
