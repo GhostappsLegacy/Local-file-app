@@ -44,21 +44,33 @@
     }
 
     /* --- Navigation Bar --- */
-    #navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      height: calc(var(--nav-bar-base-height) + env(safe-area-inset-top));
-      padding-top: env(safe-area-inset-top);
-      background-color: var(--bg-color);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: background-color 0.05s ease, backdrop-filter 0.05s ease;
-      border-bottom: 0.5px solid var(--border-color); /* new bottom border */
-    }
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: calc(var(--nav-bar-base-height) + env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.05s ease, backdrop-filter 0.05s ease;
+  position: relative;
+}
+
+#navbar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0.5px;
+  background-color: #000; /* default at top */
+  transition: background-color 0.2s ease;
+  pointer-events: none;
+}
 
     #navbar h1 {
       margin: 0;
@@ -72,6 +84,11 @@
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
     }
+
+    
+#navbar.scrolled::after {
+  background-color: #303033; /* updated when scrolled */
+}
 
     /* --- Main Content Area --- */
     #main-content {
