@@ -67,7 +67,7 @@
   left: 0;
   right: 0;
   height: 0.5px;
-  background-color: #000; /* default at top */
+  background-color: transparent; /* Invisible at top */
   transition: background-color 0.2s ease;
   pointer-events: none;
 }
@@ -87,9 +87,8 @@
 
     
 #navbar.scrolled::after {
-  background-color: #303033; /* updated when scrolled */
+  background-color: #303033; /* Appears on scroll */
 }
-
     /* --- Main Content Area --- */
     #main-content {
       padding-top: calc(var(--nav-bar-base-height) + env(safe-area-inset-top));
